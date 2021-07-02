@@ -21,7 +21,7 @@ const Navbar = () => {
                 <div className="navbar-header">
                     <h1>Siren-M</h1>
                 </div>
-                {!isAuth && <NavLink to="/login"><div className="navbar-login">Войти</div></NavLink>}
+                {!isAuth && <NavLink to="/login"><div className="navbar-login btn btn-danger">Войти</div></NavLink>}
                 {!isAuth && <NavLink to="/registration"><div className="navbar-registration btn btn-danger">Регистрация</div></NavLink>}
             </div>
 
