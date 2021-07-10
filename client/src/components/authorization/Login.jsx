@@ -1,7 +1,7 @@
-//import React, {useState} from 'react';
+import React, {useState} from 'react';
 //import {login} from "../../actions/user";
 //import {useDispatch} from "react-redux";
-import React from 'react ';
+//import React from 'react ';
 import 'typeface-roboto';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -148,7 +148,7 @@ export default function SignIn() {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <Link href:"/Registration" variant="body2">
+                            <Link href="/Registration" variant="body2">
                                 {"Ще не маєте аккаунта? Зареєструйтеся"}
                             </Link>
                         </Grid>
