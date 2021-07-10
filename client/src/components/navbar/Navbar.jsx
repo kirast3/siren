@@ -1,32 +1,55 @@
 import React from 'react';
-import './navbar.css'
-import logo from '../../assets/img/logo.png'
-import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-// import {logout} from "../../reducers/userReducer";
 
-const Navbar = () => {
-    const isAuth  = useSelector(state => state.user.isAuth);
-    const dispatch = useDispatch();
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import teal from '@material-ui/core/colors/teal';
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: teal[900],
+        },
+        secondary: {
+            main: '#ff5722',
+        },
+    },
+});
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
+
+export default function ButtonAppBar() {
+    const classes = useStyles();
+
     return (
-        <div className="navbar">
-            <div className="container">
-                <div>
-                    <NavLink to="/">
-                        <img src={logo} alt="" className="navbar-logo"/>
-
-                    </NavLink>
-
-                </div>
-                <div className="navbar-header">
-                    <h1>Siren-M</h1>
-                </div>
-                {!isAuth && <NavLink to="/login"><div className="navbar-login btn btn-danger">Войти</div></NavLink>}
-                {!isAuth && <NavLink to="/registration"><div className="navbar-registration btn btn-danger">Регистрация</div></NavLink>}
-            </div>
-
+        <ThemeProvider theme={theme}>
+        <div className={classes.root} >
+            <AppBar position="static"  >
+                <Toolbar  >
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
+                        <MenuIcon />
+                    </IconButton>
+                    <Typography variant="h6" className={classes.title} >
+                        Siren-M
+                    </Typography>
+                    <Button className={classes.menuButton} color="inherit" variant="outlined" href="/login">Вхід</Button>
+                    <Button className={classes.menuButton} color="secondary" variant="contained" href="/Registration">Реєстрація</Button>
+                </Toolbar>
+            </AppBar>
         </div>
+        </ThemeProvider>
     );
-};
-
-export default Navbar;
+}
