@@ -70,6 +70,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
+
+
+
     const classes = useStyles();
     const [currency, setCurrency] = React.useState('Nun');
 
@@ -77,9 +80,10 @@ export default function SignUp() {
         setCurrency(event.target.value);
     };
 
+
     return (
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -88,18 +92,19 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Реєстрація
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="fname"
-                                name="firstName"
+                                name="first_name"
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="firstName"
+                                id="first_name"
                                 label="Ім'я"
                                 autoFocus
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -107,10 +112,11 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="last_name"
                                 label="Прізвище"
-                                name="lastName"
+                                name="last_name"
                                 autoComplete="lname"
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -122,6 +128,7 @@ export default function SignUp() {
                                 label="Номер військової частини"
                                 name="numbervch"
                                 autoComplete="nvch"
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -129,7 +136,7 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="standard-select-currency"
+                                id="role"
                                 select
                                 label="Роль"
                                 value={currency}
@@ -153,6 +160,7 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+
                             />
                         </Grid>
 
