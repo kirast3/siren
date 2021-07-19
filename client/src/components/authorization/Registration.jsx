@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#ff5722',
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -71,15 +71,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
     const classes = useStyles();
-    const [currency, setCurrency] = React.useState('Nun');
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [numbervch, setNumbervch] = useState("")
+    const [password, setPassword] = useState("")
+    const [currency, setCurrency] = React.useState("");
 
     const handleChange = (event) => {
         setCurrency(event.target.value);
     };
 
+
     return (
         <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" >
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -88,18 +93,21 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Реєстрація
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 autoComplete="fname"
-                                name="firstName"
+                                name="first_name"
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="firstName"
+                                id="first_name"
                                 label="Ім'я"
                                 autoFocus
+                                value={firstName}
+                                setValue={setFirstName}
+
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -107,10 +115,13 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="lastName"
+                                id="last_name"
                                 label="Прізвище"
-                                name="lastName"
+                                name="last_name"
                                 autoComplete="lname"
+                                value={lastName}
+                                setValue={setLastName}
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -122,6 +133,9 @@ export default function SignUp() {
                                 label="Номер військової частини"
                                 name="numbervch"
                                 autoComplete="nvch"
+                                value={numbervch}
+                                setValue={setNumbervch}
+
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -129,7 +143,7 @@ export default function SignUp() {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                id="standard-select-currency"
+                                id="role"
                                 select
                                 label="Роль"
                                 value={currency}
@@ -153,6 +167,9 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={password}
+                                setValue={setPassword}
+
                             />
                         </Grid>
 
