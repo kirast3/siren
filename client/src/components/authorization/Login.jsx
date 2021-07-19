@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 //import {login} from "../../actions/user";
-//import {useDispatch} from "react-redux";
-//import React from 'react ';
+import {useDispatch} from "react-redux";
 import 'typeface-roboto';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -64,6 +63,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
     const classes = useStyles();
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [numbervch, setNumbervch] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
 
 
     return (
@@ -89,6 +93,8 @@ export default function SignIn() {
                                 id="firstName"
                                 label="Ім'я"
                                 autoFocus
+                                value={firstName}
+                                setValue={setFirstName}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -100,6 +106,8 @@ export default function SignIn() {
                                 label="Прізвище"
                                 name="lastName"
                                 autoComplete="lname"
+                                value={lastName}
+                                setValue={setLastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -112,6 +120,8 @@ export default function SignIn() {
                                 label="Номер військової частини"
                                 name="numbervch"
                                 autoComplete="nvch"
+                                value={numbervch}
+                                setValue={setNumbervch}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -124,6 +134,8 @@ export default function SignIn() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={password}
+                                setValue={setPassword}
                             />
                         </Grid>
 
@@ -139,6 +151,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => dispatch(SignIn(firstName,lastName,numbervch, password))}
                     >
                        Ввійти
                     </Button>

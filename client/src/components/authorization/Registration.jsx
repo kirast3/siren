@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#ff5722',
     },
     form: {
-        width: '100%', // Fix IE 11 issue.
+        width: '100%',
         marginTop: theme.spacing(3),
     },
     submit: {
@@ -70,11 +70,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-
-
-
     const classes = useStyles();
-    const [currency, setCurrency] = React.useState('Nun');
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [numbervch, setNumbervch] = useState("")
+    const [password, setPassword] = useState("")
+    const [currency, setCurrency] = React.useState("");
 
     const handleChange = (event) => {
         setCurrency(event.target.value);
@@ -104,6 +105,8 @@ export default function SignUp() {
                                 id="first_name"
                                 label="Ім'я"
                                 autoFocus
+                                value={firstName}
+                                setValue={setFirstName}
 
                             />
                         </Grid>
@@ -116,6 +119,8 @@ export default function SignUp() {
                                 label="Прізвище"
                                 name="last_name"
                                 autoComplete="lname"
+                                value={lastName}
+                                setValue={setLastName}
 
                             />
                         </Grid>
@@ -128,6 +133,8 @@ export default function SignUp() {
                                 label="Номер військової частини"
                                 name="numbervch"
                                 autoComplete="nvch"
+                                value={numbervch}
+                                setValue={setNumbervch}
 
                             />
                         </Grid>
@@ -160,6 +167,8 @@ export default function SignUp() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                value={password}
+                                setValue={setPassword}
 
                             />
                         </Grid>
