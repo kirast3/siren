@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import teal from "@material-ui/core/colors/teal";
+import {login} from "../../actions/user";
 
 const theme = createTheme({
     palette: {
@@ -85,7 +86,7 @@ export default function SignIn() {
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                autoComplete="fname"
+                               autoComplete="current-firstName"
                                 name="firstName"
                                 variant="outlined"
                                 required
@@ -105,8 +106,8 @@ export default function SignIn() {
                                 id="lastName"
                                 label="Прізвище"
                                 name="lastName"
-                                autoComplete="lname"
-                                value={lastName}
+                                autoComplete="current-lastName"
+                                //value={lastName}
                                 setValue={setLastName}
                             />
                         </Grid>
@@ -119,8 +120,8 @@ export default function SignIn() {
                                 id="numbervch"
                                 label="Номер військової частини"
                                 name="numbervch"
-                                autoComplete="nvch"
-                                value={numbervch}
+                                autoComplete="current-numbervch"
+                               // value={numbervch}
                                 setValue={setNumbervch}
                             />
                         </Grid>
@@ -134,7 +135,7 @@ export default function SignIn() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                value={password}
+                               // value={password}
                                 setValue={setPassword}
                             />
                         </Grid>
@@ -151,7 +152,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => dispatch(SignIn(firstName,lastName,numbervch, password))}
+                        onClick={() => dispatch(login(firstName,lastName,numbervch, password))}
                     >
                        Ввійти
                     </Button>

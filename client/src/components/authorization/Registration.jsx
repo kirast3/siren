@@ -14,6 +14,7 @@ import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles
 import Container from '@material-ui/core/Container';
 import teal from "@material-ui/core/colors/teal";
 import MenuItem from '@material-ui/core/MenuItem';
+import {registration} from "../../actions/user";
 
 const currencies = [
 
@@ -77,9 +78,24 @@ export default function SignUp() {
     const [password, setPassword] = useState("")
     const [currency, setCurrency] = React.useState("");
 
-    const handleChange = (event) => {
+
+
+    const handleChangeCurrency = (event) => {
         setCurrency(event.target.value);
     };
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleChangeFirstName = (event) => {
+        setFirstName(event.target.value);
+    };
+    const handleChangeLastName = (event) => {
+        setLastName(event.target.value);
+    };
+    const handleChangeNumbervch = (event) => {
+        setNumbervch(event.target.value);
+    };
+
 
 
     return (
@@ -104,9 +120,11 @@ export default function SignUp() {
                                 fullWidth
                                 id="first_name"
                                 label="Ім'я"
+                                type="text"
                                 autoFocus
                                 value={firstName}
-                                setValue={setFirstName}
+
+                                onChange={handleChangeFirstName}
 
                             />
                         </Grid>
@@ -119,8 +137,10 @@ export default function SignUp() {
                                 label="Прізвище"
                                 name="last_name"
                                 autoComplete="lname"
+                                type="text"
                                 value={lastName}
-                                setValue={setLastName}
+
+                                onChange={handleChangeLastName}
 
                             />
                         </Grid>
@@ -132,9 +152,11 @@ export default function SignUp() {
                                 id="numbervch"
                                 label="Номер військової частини"
                                 name="numbervch"
+                                type="text"
                                 autoComplete="nvch"
                                 value={numbervch}
-                                setValue={setNumbervch}
+
+                                onChange={handleChangeNumbervch}
 
                             />
                         </Grid>
@@ -147,7 +169,7 @@ export default function SignUp() {
                                 select
                                 label="Роль"
                                 value={currency}
-                                onChange={handleChange}
+                                onChange={handleChangeCurrency}
                                 helperText="Будь ласка оберіть свою роль        "
                             >
                                 {currencies.map((option) => (
@@ -168,7 +190,8 @@ export default function SignUp() {
                                 id="password"
                                 autoComplete="current-password"
                                 value={password}
-                                setValue={setPassword}
+
+                                onChange={handleChangePassword}
 
                             />
                         </Grid>
@@ -180,6 +203,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => registration(firstName,lastName,numbervch,currency, password)}
                     >
                         Зареєструватися
                     </Button>
