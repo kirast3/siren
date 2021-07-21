@@ -39,7 +39,7 @@ export default function ButtonAppBar() {
         <div className={classes.root} >
             <AppBar position="static"  >
                 <Toolbar  >
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" component={Link} to = '/'>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title} >

@@ -15,6 +15,7 @@ import Container from '@material-ui/core/Container';
 import teal from "@material-ui/core/colors/teal";
 import MenuItem from '@material-ui/core/MenuItem';
 import {registration} from "../../actions/user";
+import {Link as RouterLink} from "react-router-dom";
 
 const currencies = [
 
@@ -110,6 +111,7 @@ export default function SignUp() {
     const [password, setPassword] = useState("")
     const [currency, setCurrency] = React.useState("");
 
+    const preventDefault = (event) => event.preventDefault();
 
 
     const handleChangeCurrency = (event) => {
@@ -264,7 +266,8 @@ export default function SignUp() {
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="/Login" variant="body2">
+
+                            <Link component={RouterLink} to = '/login' variant="body2">
                                 Вже маєте аккаунт? Вхід
                             </Link>
                         </Grid>
