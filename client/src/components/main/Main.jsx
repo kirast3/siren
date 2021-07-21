@@ -6,7 +6,7 @@ import teal from '@material-ui/core/colors/teal';
 import {Container,Paper ,Grid,Typography,Button} from "@material-ui/core";
 import {Link} from "react-router-dom";
 //import {Link} from "react-router-dom";
-import Image from "../../assets/img/bell-ah-1z-viper-military-helicopters-american-army-us-marine-corps-bell.jpg";
+import Image from "../../assets/img/вип.jpg";
 
 const theme = createTheme({
     palette: {
@@ -39,8 +39,9 @@ const useStyles = makeStyles((theme) => ({
     },
     mainFeaturesPostContent:{
         position:"relative",
-        margin: theme.spacing(5),
-        padding:theme.spacing(5)
+        margin: theme.spacing(0),
+        padding:theme.spacing(0),
+
     },
     overlay:{
         position:"absolute",
@@ -82,7 +83,7 @@ export default function Main() {
                                 ever since the 1500s, when an unknown printer took a galley of
                                 type and scrambled it to make a type specimen book.
                             </Typography>
-                            <Button className={classes.menuButton} color="secondary" variant="contained" component={Link} to = '/login' >Дізнатися більше</Button>
+
 
                         </div>
 
