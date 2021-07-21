@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-//import {login} from "../../actions/user";
 import {useDispatch} from "react-redux";
 import 'typeface-roboto';
 import Avatar from '@material-ui/core/Avatar';
@@ -62,6 +61,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function handleSubmit(event) {
+    event.preventDefault();
+    // console.log( 'Name:', firstName, 'Password: ', password);
+
+}
+
 export default function SignIn() {
     const classes = useStyles();
     const [firstName, setFirstName] = useState("")
@@ -69,6 +74,19 @@ export default function SignIn() {
     const [numbervch, setNumbervch] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
+
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleChangeFirstName = (event) => {
+        setFirstName(event.target.value);
+    };
+    const handleChangeLastName = (event) => {
+        setLastName(event.target.value);
+    };
+    const handleChangeNumbervch = (event) => {
+        setNumbervch(event.target.value);
+    };
 
 
     return (
@@ -82,7 +100,7 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5">
                     Вхід
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -95,7 +113,7 @@ export default function SignIn() {
                                 label="Ім'я"
                                 autoFocus
                                 value={firstName}
-                                setValue={setFirstName}
+                               onChange={handleChangeFirstName}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -107,8 +125,8 @@ export default function SignIn() {
                                 label="Прізвище"
                                 name="lastName"
                                 autoComplete="current-lastName"
-                                //value={lastName}
-                                setValue={setLastName}
+                                value={lastName}
+                                onChange={handleChangeLastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -121,8 +139,8 @@ export default function SignIn() {
                                 label="Номер військової частини"
                                 name="numbervch"
                                 autoComplete="current-numbervch"
-                               // value={numbervch}
-                                setValue={setNumbervch}
+                                value={numbervch}
+                                onChange={handleChangeNumbervch}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -135,8 +153,8 @@ export default function SignIn() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                               // value={password}
-                                setValue={setPassword}
+                                value={password}
+                                onChange={handleChangePassword}
                             />
                         </Grid>
 
