@@ -259,7 +259,8 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => registration(firstName,lastName,numbervch,currency,rank, password)}
+
+                        onClick={() => registration(firstName,lastName,numbervch,currency, rank, password)}
 
                     >
                         Зареєструватися
