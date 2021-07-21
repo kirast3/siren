@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-//import {login} from "../../actions/user";
 import {useDispatch} from "react-redux";
 import 'typeface-roboto';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import teal from "@material-ui/core/colors/teal";
+import {login} from "../../actions/user";
 
 const theme = createTheme({
     palette: {
@@ -61,6 +61,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function handleSubmit(event) {
+    event.preventDefault();
+    // console.log( 'Name:', firstName, 'Password: ', password);
+
+}
+
 export default function SignIn() {
     const classes = useStyles();
     const [firstName, setFirstName] = useState("")
@@ -68,6 +74,19 @@ export default function SignIn() {
     const [numbervch, setNumbervch] = useState("")
     const [password, setPassword] = useState("")
     const dispatch = useDispatch()
+
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleChangeFirstName = (event) => {
+        setFirstName(event.target.value);
+    };
+    const handleChangeLastName = (event) => {
+        setLastName(event.target.value);
+    };
+    const handleChangeNumbervch = (event) => {
+        setNumbervch(event.target.value);
+    };
 
 
     return (
@@ -81,11 +100,11 @@ export default function SignIn() {
                 <Typography component="h1" variant="h5">
                     Вхід
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={handleSubmit}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                autoComplete="fname"
+                               autoComplete="current-firstName"
                                 name="firstName"
                                 variant="outlined"
                                 required
@@ -94,7 +113,7 @@ export default function SignIn() {
                                 label="Ім'я"
                                 autoFocus
                                 value={firstName}
-                                setValue={setFirstName}
+                               onChange={handleChangeFirstName}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -105,9 +124,9 @@ export default function SignIn() {
                                 id="lastName"
                                 label="Прізвище"
                                 name="lastName"
-                                autoComplete="lname"
+                                autoComplete="current-lastName"
                                 value={lastName}
-                                setValue={setLastName}
+                                onChange={handleChangeLastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -119,9 +138,9 @@ export default function SignIn() {
                                 id="numbervch"
                                 label="Номер військової частини"
                                 name="numbervch"
-                                autoComplete="nvch"
+                                autoComplete="current-numbervch"
                                 value={numbervch}
-                                setValue={setNumbervch}
+                                onChange={handleChangeNumbervch}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -135,7 +154,7 @@ export default function SignIn() {
                                 id="password"
                                 autoComplete="current-password"
                                 value={password}
-                                setValue={setPassword}
+                                onChange={handleChangePassword}
                             />
                         </Grid>
 
@@ -151,7 +170,7 @@ export default function SignIn() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => dispatch(SignIn(firstName,lastName,numbervch, password))}
+                        onClick={() => dispatch(login(firstName,lastName,numbervch, password))}
                     >
                        Ввійти
                     </Button>

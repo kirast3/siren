@@ -14,16 +14,45 @@ import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles
 import Container from '@material-ui/core/Container';
 import teal from "@material-ui/core/colors/teal";
 import MenuItem from '@material-ui/core/MenuItem';
+import {registration} from "../../actions/user";
+import {Link as RouterLink} from "react-router-dom";
 
 const currencies = [
 
     {
-        value: 'Graduate',
+        value: 'graduate',
         label: 'Випускник ВВНЗ',
     },
     {
-        value: 'Comander',
+        value: 'officer',
         label: 'Командир',
+    },
+];
+const ranks = [
+
+    {
+        value: 'lieutenant',
+        label: 'Лейтенант',
+    },
+    {
+        value: 'senior lieutenant',
+        label: 'Старший Лейтенант',
+    },
+    {
+        value: 'captain',
+        label: 'Капітан',
+    },
+    {
+        value: 'major',
+        label: 'Майор',
+    },
+    {
+        value: 'lieutenant colonel',
+        label: 'Підполковник',
+    },
+    {
+        value: 'colonel',
+        label: 'Полковник',
     },
 ];
 const theme = createTheme({
@@ -68,18 +97,42 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3, 0, 2),
     },
 }));
+function handleSubmit(event) {
+    event.preventDefault();
+   // console.log( 'Name:', firstName, 'Password: ', password);
 
+}
 export default function SignUp() {
     const classes = useStyles();
+    const [rank, setRank] = useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [numbervch, setNumbervch] = useState("")
     const [password, setPassword] = useState("")
     const [currency, setCurrency] = React.useState("");
 
-    const handleChange = (event) => {
+    const preventDefault = (event) => event.preventDefault();
+
+
+    const handleChangeCurrency = (event) => {
         setCurrency(event.target.value);
     };
+    const handleChangeRank = (event) => {
+        setRank(event.target.value);
+    };
+    const handleChangePassword = (event) => {
+        setPassword(event.target.value);
+    };
+    const handleChangeFirstName = (event) => {
+        setFirstName(event.target.value);
+    };
+    const handleChangeLastName = (event) => {
+        setLastName(event.target.value);
+    };
+    const handleChangeNumbervch = (event) => {
+        setNumbervch(event.target.value);
+    };
+
 
 
     return (
@@ -93,7 +146,7 @@ export default function SignUp() {
                 <Typography component="h1" variant="h5">
                     Реєстрація
                 </Typography>
-                <form className={classes.form} noValidate >
+                <form className={classes.form} noValidate onSubmit={handleSubmit} >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -104,9 +157,11 @@ export default function SignUp() {
                                 fullWidth
                                 id="first_name"
                                 label="Ім'я"
+                                type="text"
                                 autoFocus
                                 value={firstName}
-                                setValue={setFirstName}
+
+                                onChange={handleChangeFirstName}
 
                             />
                         </Grid>
@@ -118,9 +173,11 @@ export default function SignUp() {
                                 id="last_name"
                                 label="Прізвище"
                                 name="last_name"
-                                autoComplete="lname"
+                                autoComplete="last_name"
+                                type="text"
                                 value={lastName}
-                                setValue={setLastName}
+
+                                onChange={handleChangeLastName}
 
                             />
                         </Grid>
@@ -132,9 +189,11 @@ export default function SignUp() {
                                 id="numbervch"
                                 label="Номер військової частини"
                                 name="numbervch"
+                                type="text"
                                 autoComplete="nvch"
                                 value={numbervch}
-                                setValue={setNumbervch}
+
+                                onChange={handleChangeNumbervch}
 
                             />
                         </Grid>
@@ -147,10 +206,29 @@ export default function SignUp() {
                                 select
                                 label="Роль"
                                 value={currency}
-                                onChange={handleChange}
+                                onChange={handleChangeCurrency}
                                 helperText="Будь ласка оберіть свою роль        "
                             >
                                 {currencies.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="role"
+                                select
+                                label="Звання"
+                                value={rank}
+                                onChange={handleChangeRank}
+                                helperText="Будь ласка оберіть своє звання       "
+                            >
+                                {ranks.map((option) => (
                                     <MenuItem key={option.value} value={option.value}>
                                         {option.label}
                                     </MenuItem>
@@ -168,7 +246,8 @@ export default function SignUp() {
                                 id="password"
                                 autoComplete="current-password"
                                 value={password}
-                                setValue={setPassword}
+
+                                onChange={handleChangePassword}
 
                             />
                         </Grid>
@@ -180,12 +259,15 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        onClick={() => registration(firstName,lastName,numbervch,currency, password)}
+
                     >
                         Зареєструватися
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link href="/Login" variant="body2">
+
+                            <Link component={RouterLink} to = '/login' variant="body2">
                                 Вже маєте аккаунт? Вхід
                             </Link>
                         </Grid>

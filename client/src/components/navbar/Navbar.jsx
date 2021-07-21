@@ -1,5 +1,4 @@
 import React from 'react';
-
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
 import teal from '@material-ui/core/colors/teal';
+import {Link} from "react-router-dom";
 const theme = createTheme({
     palette: {
         primary: {
@@ -39,14 +39,14 @@ export default function ButtonAppBar() {
         <div className={classes.root} >
             <AppBar position="static"  >
                 <Toolbar  >
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" href="/">
+                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" component={Link} to = '/'>
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title} >
                         Siren-M
                     </Typography>
-                    <Button className={classes.menuButton} color="inherit" variant="outlined" href="/login">Вхід</Button>
-                    <Button className={classes.menuButton} color="secondary" variant="contained" href="/Registration">Реєстрація</Button>
+                    <Button className={classes.menuButton} color="inherit" variant="outlined" component={Link} to = '/login' >Вхід</Button>
+                    <Button className={classes.menuButton} color="secondary" variant="contained" component={Link} to ='/registration'>Реєстрація</Button>
                 </Toolbar>
             </AppBar>
         </div>

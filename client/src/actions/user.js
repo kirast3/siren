@@ -1,11 +1,16 @@
 import axios from 'axios'
-import {setUser} from "../../../../MERN-cloud-disk/client/src/reducers/userReducer";
-import {API_URL} from "../../../../MERN-cloud-disk/client/src/config";
+import {setUser} from "../reducers/userReducer";
+//import {API_URL} from "../config";
 
-export const registration = async (email, password) => {
+export const registration = async (firstname,lastname,vch, typeUser,rank,password) => {
     try {
-        const response = await axios.post(`${API_URL}api/auth/registration`, {
-            email,
+
+        const response = await axios.post(`http://localhost:5000/auth/registration`, {
+            firstname,
+            lastname,
+            vch,
+            typeUser,
+            rank,
             password
         })
         alert(response.data.message)
@@ -14,59 +19,37 @@ export const registration = async (email, password) => {
     }
 }
 
-export const login =  (email, password) => {
+export const login =  (firstname,lastname,vch,password) => {
     return async dispatch => {
         try {
-            const response = await axios.post(`${API_URL}api/auth/login`, {
-                email,
+            console.log(firstname)
+            const response = await axios.post(`http://localhost:5000/auth/login`, {
+                firstname,
+                lastname,
+                vch,
                 password
             })
+            console.log(response.data)
             dispatch(setUser(response.data.user))
             localStorage.setItem('token', response.data.token)
+            console.log('token', response.data.token)
         } catch (e) {
             alert(e.response.data.message)
         }
     }
 }
 
-export const auth =  () => {
-    return async dispatch => {
-        try {
-            const response = await axios.get(`${API_URL}api/auth/auth`,
-                {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
-            )
-            dispatch(setUser(response.data.user))
-            localStorage.setItem('token', response.data.token)
-        } catch (e) {
-            localStorage.removeItem('token')
-        }
-    }
-}
+// export const auth =  () => {
+//     return async dispatch =>  {
+//         try {
+//             const response = await axios.get(`http://localhost:5000/auth/registration`,
+//                 {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
+//             )
+//             dispatch(setUser(response.data.user))
+//             localStorage.setItem('token', response.data.token)
+//         } catch (e) {
+//             localStorage.removeItem('token')
+//         }
+//     }
+// }
 
-export const uploadAvatar =  (file) => {
-    return async dispatch => {
-        try {
-            const formData = new FormData()
-            formData.append('file', file)
-            const response = await axios.post(`${API_URL}api/files/avatar`, formData,
-                {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
-            )
-            dispatch(setUser(response.data))
-        } catch (e) {
-            console.log(e)
-        }
-    }
-}
-
-export const deleteAvatar =  () => {
-    return async dispatch => {
-        try {
-            const response = await axios.delete(`${API_URL}api/files/avatar`,
-                {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}}
-            )
-            dispatch(setUser(response.data))
-        } catch (e) {
-            console.log(e)
-        }
-    }
-}
