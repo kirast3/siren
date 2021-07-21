@@ -15,8 +15,9 @@ const generateAccessToken = (id, roles) => {
 exports.registration = async function (req, res) {
     try {
         const errors = validationResult(req)
-
+        console.log(req.body)
         if (!errors.isEmpty()) {
+            console.log('pizda  ', errors)
             return res.status(400).json({
                 errors: errors.array(),
                 message: 'Некорректный данные при регистрации'
@@ -122,7 +123,7 @@ exports.login = async (req, res) => {
         const token = generateAccessToken(user.id_user, user.role)
         // return res.json({token})
 
-        res.json({token, userId: user.id})
+        res .json({token,  userId: user.id})
 
     } catch (e) {
         console.log(e)
