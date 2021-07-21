@@ -104,7 +104,7 @@ function handleSubmit(event) {
 }
 export default function SignUp() {
     const classes = useStyles();
-    const [rank, setRank] = useState("")
+    const [rank, setRank] = React.useState("")
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [numbervch, setNumbervch] = useState("")
@@ -259,7 +259,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => registration(firstName,lastName,numbervch,currency, password)}
+                        onClick={() => registration(firstName,lastName,numbervch,currency, rank, password)}
 
                     >
                         Зареєструватися
