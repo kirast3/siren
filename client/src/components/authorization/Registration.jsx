@@ -31,27 +31,27 @@ const currencies = [
 const ranks = [
 
     {
-        value: 'lieutenant',
+        value: 'Лейтенант',
         label: 'Лейтенант',
     },
     {
-        value: 'senior lieutenant',
+        value: 'Старший Лейтенант',
         label: 'Старший Лейтенант',
     },
     {
-        value: 'captain',
+        value: 'Капітан',
         label: 'Капітан',
     },
     {
-        value: 'major',
+        value: 'Майор',
         label: 'Майор',
     },
     {
-        value: 'lieutenant colonel',
+        value: 'Підполковник',
         label: 'Підполковник',
     },
     {
-        value: 'colonel',
+        value: 'Полковник',
         label: 'Полковник',
     },
 ];
@@ -111,7 +111,7 @@ export default function SignUp() {
     const [password, setPassword] = useState("")
     const [currency, setCurrency] = React.useState("");
 
-    const preventDefault = (event) => event.preventDefault();
+
 
 
     const handleChangeCurrency = (event) => {
@@ -259,6 +259,7 @@ export default function SignUp() {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+
                         onClick={() => registration(firstName,lastName,numbervch,currency, rank, password)}
 
                     >
