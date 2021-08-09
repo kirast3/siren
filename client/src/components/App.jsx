@@ -9,6 +9,8 @@ import Registration from "./authorization/Registration";
 
 const App = () => {
     const  isAuth = useSelector(state => state.user.isAuth);
+    const role =useSelector(state => state.user.role);
+    console.log(isAuth)
 
     return (
 
