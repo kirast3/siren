@@ -120,10 +120,16 @@ exports.login = async (req, res) => {
             return res.status(400).json({message: 'Неверный пароль, попробуйте снова'})
         }
 
-        const token = generateAccessToken(user.id_user, user.role)
+        let token = generateAccessToken(user.id_user, user.role)
         // return res.json({token})
+        if (user.role ==='GRADUATE'){
+            token += 'VRI';
+        }else if (user.role ==='OFFICER'){
+            token += 'WMO';
+        }
 
-        res .json({token,  userId: user.id})
+
+        await res.status(200).json({token:token, user: user.id_user})
 
     } catch (e) {
         console.log(e)

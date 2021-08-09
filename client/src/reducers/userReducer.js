@@ -12,7 +12,8 @@ export default function userReducer (state=defaultState, action) {
             return {
                 ...state,
                 currentUser: action.payload.user,
-                isAuth: true
+                role: action.role.role  ,
+                isAuth: true,
             }
         case LOGOUT:
             localStorage.removeItem('token')
@@ -30,7 +31,8 @@ export default function userReducer (state=defaultState, action) {
 
 export const setUser =user =>({
     type:SET_USER,
-    payload:user
+    payload:user.user,
+    role:user.token
 })
 
 export  const logout =()=>({type:LOGOUT})
