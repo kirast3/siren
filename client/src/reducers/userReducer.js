@@ -9,10 +9,15 @@ const defaultState = {
 export default function userReducer (state=defaultState, action) {
     switch (action.type){
         case SET_USER:
+            let role = false
+            if(localStorage.getItem('token')!==undefined){
+                role=localStorage.getItem('token').substr(localStorage.getItem('token').length-3)
+            }
             return {
+
                 ...state,
                 currentUser: action.payload.user,
-                role: action.role.role  ,
+                role: role /*(((localStorage.getItem('token')).substr(localStorage.getItem('token').length-3 )):  ? false )*/  ,
                 isAuth: true,
             }
         case LOGOUT:
@@ -31,8 +36,7 @@ export default function userReducer (state=defaultState, action) {
 
 export const setUser =user =>({
     type:SET_USER,
-    payload:user.user,
-    role:user.token
+    payload: user,
 })
 
 export  const logout =()=>({type:LOGOUT})

@@ -8,9 +8,11 @@ import Login from "./authorization/Login";
 import Registration from "./authorization/Registration";
 
 const App = () => {
-    const  isAuth = useSelector(state => state.user.isAuth);
-    const role =useSelector(state => state.user.role);
-    console.log(isAuth)
+    const isAuth = useSelector(state => state.user.isAuth);
+    const role = useSelector(state => state.user.role);
+    console.log(isAuth);
+    console.log(role);
+
 
     return (
 
@@ -21,10 +23,37 @@ const App = () => {
                 <div className="wrap">
                     {!isAuth ?
                         <Switch>
-                            <Route path='/login' component={Login} />
-                            <Route path='/registration' component={Registration} />
-                            <Route path='/' component={Main} />
-                            <Route path='/test' component={Test} />
+                            <Route path='/login' component={Login}/>
+                            <Route path='/registration' component={Registration}/>
+                            <Route path='/' component={Main}/>
+                            {role === "VRI" ?
+                                <Switch>
+                                    {/*TODO Тут выпускник*/}
+                                    <Route path='/test' component={Test}/>
+
+                                </Switch>
+                                :
+                                role==="WMO" ?
+                                    <Switch>
+                                        {/*TODO Тут Командир*/}
+                                    </Switch>
+                                    :
+                                    role==="" ?
+                                        <Switch>
+                                            {/*TODO Тут Институт*/}
+                                        </Switch>
+                                        :
+                                        role==="" ?
+                                            <Switch>
+                                                {/*TODO Тут Институт*/}
+                                            </Switch>
+                                            :
+                                            <Switch>
+                                                <Route path='/' component={Main}/>
+                                            </Switch>
+                            }
+
+                            }
 
                             {/*<Redirect to="login"/>*/}
                         </Switch>

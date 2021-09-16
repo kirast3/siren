@@ -28,13 +28,12 @@ export const login =  (firstname,lastname,vch,password) => {
                 vch,
                 password
             })
-            console.log(response)
             dispatch(setUser(response.data))
             // let role = (response.data.token).substr( response.data.token.length-3)
             // let token = (response.data.token).substr(0,response.data.token.length-3 )
 
             localStorage.setItem('token',  response.data.token)
-            // console.log('token', response.data.token)
+            console.log(response.data.token)
         } catch (e) {
             console.log(e)
             alert(e.response.data.message)
