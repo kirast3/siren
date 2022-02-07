@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require("multer");
-const roleMiddleware = require('../middleware/roleMiddleware')
-const instituteController = require('../controllers/instituteController')
+const roleMiddleware = require('../middleware/role.middleware')
+const instituteController = require('../controllers/institute.controller')
 const router = express.Router();
 
 const storageConfig = multer.diskStorage({

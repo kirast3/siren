@@ -16,7 +16,7 @@ exports.addGraduates = async function (req, res) {
                 })
 
         }
-        res.status(500).json({ message: 'Выпускники добавлены' });
+        res.status(200).json({ message: 'Выпускники добавлены' });
 
     }catch (e) {
         console.log(e);

@@ -1,5 +1,5 @@
 const {Sequelize, DataTypes, Model} = require('sequelize');
-const config = require('../config/mysql_config');
+const config = require('../config/mysql.config');
 const sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
     dialect: 'mysql',
@@ -64,5 +64,5 @@ User.init({
     }
 })();
 
-console.log(User === sequelize.models.User); // true
+// console.log(User === sequelize.models.User); // true
 module.exports = User;

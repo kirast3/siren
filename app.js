@@ -15,14 +15,14 @@ app.use(express.json());
 /**
  * Подключение роутов
  */
-const authRouter =require('./routes/authRouter');
-const instituteRouter =require('./routes/instituteRouter');
-//Тоже роуты
+const authRouter =require('./routes/auth.router');
+const instituteRouter =require('./routes/institute.router');
+
 app.use('/auth', authRouter);
 app.use('/institute', instituteRouter);
 
 
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'production') {
     console.log('Index file send')
     app.use('/', express.static(path.join(__dirname, 'client', 'public')))
@@ -35,7 +35,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const start = async () =>{
     try {
-        // await mongoose.connect(config.get("dbUrl"))
         app.listen(PORT,()=>{
             console.log('Server started on port ', PORT);
         })
